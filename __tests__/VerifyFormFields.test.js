@@ -9,7 +9,7 @@ import TestUtils from 'react-addons-test-utils';
 
 
 describe('Verify form fields', () => {
-  it ('check exist form elements', () => {
+  it ('check exist field username', () => {
     const loginForm = TestUtils.renderIntoDocument(
       <LoginForm />
     );
@@ -18,6 +18,18 @@ describe('Verify form fields', () => {
     const fieldUsername = loginFormDOM.querySelector('input[name="username"]');
 
     expect(fieldUsername).not.toBeNull();
+  });
+
+  it ('check exist field password', () => {
+    const loginForm = TestUtils.renderIntoDocument(
+      <LoginForm />
+    );
+
+    const loginFormDOM = ReactDOM.findDOMNode(loginForm);
+    const fieldPassword = loginFormDOM.querySelector('input[name="password"]');
+
+    expect(fieldPassword).not.toBeNull();
+
   });
 
   // it('changes the text after click', () => {
