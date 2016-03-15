@@ -9,10 +9,13 @@ import TestUtils from 'react-addons-test-utils';
 
 describe('Verify form fields', () => {
   let loginFormDOM;
+  let myMockSuccess;
 
   beforeEach(() => {
+    myMockSuccess = jest.genMockFunction();
+
     const loginForm = TestUtils.renderIntoDocument(
-      <LoginForm />
+      <LoginForm onSuccess={myMockSuccess} />
     );
 
     loginFormDOM = ReactDOM.findDOMNode(loginForm);
@@ -28,10 +31,17 @@ describe('Verify form fields', () => {
     expect(fieldPassword).not.toBeNull();
   });
 
-  it ('check exist submit buttom', () => {
-    const buttomSubmit = loginFormDOM.querySelector('input[name="buttom"]');
-    expect(buttomSubmit).not.toBeNull();
+  it ('check exist submit button', () => {
+    const buttonSubmit = loginFormDOM.querySelector('button');
+    expect(buttonSubmit).not.toBeNull();
   });
+
+  // it ('check call action on success', () => {
+  //   const buttonSubmit = loginFormDOM.querySelector('button');
+  //   TestUtils.Simulate.click(loginFormDOM);
+  //   console.log('1111111111111');
+  //   expect(myMockSuccess).toBeCalled();
+  // });
 
   // it('changes the text after click', () => {
   //   // Render a checkbox with label in the document
