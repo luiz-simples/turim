@@ -7,32 +7,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-
 describe('Verify form fields', () => {
-
-  let loginForm;
+  let loginFormDOM;
 
   beforeEach(() => {
-    loginForm = TestUtils.renderIntoDocument(
+    const loginForm = TestUtils.renderIntoDocument(
       <LoginForm />
     );
+
+    loginFormDOM = ReactDOM.findDOMNode(loginForm);
   });
 
   it ('check exist field username', () => {
-
-    const loginFormDOM = ReactDOM.findDOMNode(loginForm);
     const fieldUsername = loginFormDOM.querySelector('input[name="username"]');
-
     expect(fieldUsername).not.toBeNull();
   });
 
   it ('check exist field password', () => {
-
-    const loginFormDOM = ReactDOM.findDOMNode(loginForm);
     const fieldPassword = loginFormDOM.querySelector('input[name="password"]');
-
     expect(fieldPassword).not.toBeNull();
+  });
 
+  it ('check exist submit buttom', () => {
+    const buttomSubmit = loginFormDOM.querySelector('input[name="buttom"]');
+    expect(buttomSubmit).not.toBeNull();
   });
 
   // it('changes the text after click', () => {

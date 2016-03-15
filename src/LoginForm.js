@@ -8,6 +8,7 @@ export default class LoginForm extends React.Component {
       <form>
         <input name="username" />
         <input name="password" />
+        <input type="buttom" name="buttom" />
       </form>
     );
   }
