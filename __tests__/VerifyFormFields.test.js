@@ -36,28 +36,8 @@ describe('Verify form fields', () => {
     expect(buttonSubmit).not.toBeNull();
   });
 
-  // it ('check call action on success', () => {
-  //   const buttonSubmit = loginFormDOM.querySelector('button');
-  //   TestUtils.Simulate.click(loginFormDOM);
-  //   console.log('1111111111111');
-  //   expect(myMockSuccess).toBeCalled();
-  // });
-
-  // it('changes the text after click', () => {
-  //   // Render a checkbox with label in the document
-  //   const checkbox = TestUtils.renderIntoDocument(
-  //     <CheckboxWithLabel labelOn="On" labelOff="Off" />
-  //   );
-  //
-  //   const checkboxNode = ReactDOM.findDOMNode(checkbox);
-  //
-  //   // Verify that it's Off by default
-  //   expect(checkboxNode.textContent).toEqual('Off');
-  //
-  //   // Simulate a click and verify that it is now On
-  //   TestUtils.Simulate.change(
-  //     TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input')
-  //   );
-  //   expect(checkboxNode.textContent).toEqual('On');
-  // });
+  it ('check call action on success', () => {
+    TestUtils.Simulate.submit(loginFormDOM);
+    expect(myMockSuccess).toBeCalled();
+  });
 });

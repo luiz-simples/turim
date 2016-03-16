@@ -2,15 +2,15 @@
 
 import React from 'react';
 
-export default class LoginForm extends React.Component {
-  handleSubmit() {
-    console.log('----------------------');
+class LoginForm extends React.Component {
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.onSuccess();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={(e) => this.handleSubmit(e)}>
         <input name="username" />
         <input name="password" />
         <button type="submit">send</button>
@@ -18,3 +18,5 @@ export default class LoginForm extends React.Component {
     );
   }
 }
+
+export default LoginForm;
