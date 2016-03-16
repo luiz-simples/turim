@@ -10,12 +10,17 @@ import TestUtils from 'react-addons-test-utils';
 describe('Verify form fields', () => {
   let loginFormDOM;
   let myMockSuccess;
+  let myMockError;
 
   beforeEach(() => {
     myMockSuccess = jest.genMockFunction();
+    myMockError = jest.genMockFunction();
 
     const loginForm = TestUtils.renderIntoDocument(
-      <LoginForm onSuccess={myMockSuccess} />
+      <LoginForm
+        onSuccess={myMockSuccess}
+        onError={myMockError}
+      />
     );
 
     loginFormDOM = ReactDOM.findDOMNode(loginForm);
@@ -37,7 +42,19 @@ describe('Verify form fields', () => {
   });
 
   it ('check call action on success', () => {
+    const fieldUsername = loginFormDOM.querySelector('input[name="username"]');
+    fieldUsername.value = 'Novo Valor';
     TestUtils.Simulate.submit(loginFormDOM);
     expect(myMockSuccess).toBeCalled();
+  });
+
+  it ('check user name is filled', () => {
+    TestUtils.Simulate.submit(loginFormDOM);
+    expect(myMockError).toBeCalled();
+  });
+
+  it ('check dont call onSuccess when form error', () => {
+    TestUtils.Simulate.submit(loginFormDOM);
+    expect(myMockSuccess).not.toBeCalled();
   });
 });
